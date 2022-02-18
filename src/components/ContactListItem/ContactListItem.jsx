@@ -1,4 +1,8 @@
-const ContactListItem = ({ name, number, deleteContact }) => {
+import { useDispatch } from "react-redux";
+import {deleteContact} from "../../redux/phoneBook/phoneBookActions"
+
+const ContactListItem = ({ name, number }) => {
+  const dispatch = useDispatch()
   return (
     <>
       <li>
@@ -6,7 +10,7 @@ const ContactListItem = ({ name, number, deleteContact }) => {
           {name}
           <span> {number}</span>
         </p>
-        <button onClick={() => deleteContact(name)} type="button">
+        <button onClick={() => dispatch(deleteContact(name))} type="button">
           Delete
         </button>
       </li>

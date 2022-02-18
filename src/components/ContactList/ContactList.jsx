@@ -1,6 +1,15 @@
+import { useSelector } from "react-redux";
 import ContactListItem from "../ContactListItem/ContactListItem";
 
-const ContactList = ({ filterArray, deleteContact }) => {
+const ContactList = () => {
+  const { contacts, filter } = useSelector((state) => state.phonebook)
+
+    const filterArray = () => {
+      if (filter === "") return contacts
+      return contacts.filter((el) => {
+        return el.name.toLowerCase().includes(filter.toLowerCase())
+      })
+    }
   return (
     <>
       <ul>
@@ -9,7 +18,6 @@ const ContactList = ({ filterArray, deleteContact }) => {
             name={name}
             number={number}
             key={id}
-            deleteContact={deleteContact}
           />
         ))}
       </ul>

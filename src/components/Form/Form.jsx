@@ -1,9 +1,14 @@
 import { useState } from "react";
 import { nanoid } from "nanoid"
+import { useSelector, useDispatch } from "react-redux"
+import {addContact} from "../../redux/phoneBook/phoneBookActions"
 
-const Form = ({ contacts, addContact }) => {
-  const [name, setName] = useState()
-  const [number, setNumbet] = useState()
+
+const Form = () => {
+  const { contacts } = useSelector((state) => state.phonebook)
+  const dispatch = useDispatch()
+  const [name, setName] = useState("")
+  const [number, setNumbet] = useState("")
 
   const handleInputChange = (e) => {
     e.target.name === "name" && setName(e.target.value)
@@ -29,7 +34,7 @@ const Form = ({ contacts, addContact }) => {
       id: nanoid(),
     }
 
-    addContact(newContact)
+    dispatch(addContact(newContact))
     reset()
   }
 
