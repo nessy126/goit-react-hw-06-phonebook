@@ -1,7 +1,7 @@
 import { createReducer, combineReducers } from "@reduxjs/toolkit"
 import { addContact, deleteContact, setFilter } from "./phoneBookActions";
 
-const contsctsFromLS = () => JSON.parse(localStorage.getItem("contacts") || [])
+const contsctsFromLS = () => JSON.parse(localStorage.getItem("contacts")) || []
 const setContactsToLS = (contacts) => localStorage.setItem("contacts", JSON.stringify(contacts))
 
  const contactsReducer = createReducer(contsctsFromLS, {
